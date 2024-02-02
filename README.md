@@ -1,5 +1,6 @@
+[edit - github](https://github.com/2cld/whs/edit/master/README.md)
 
-# Winfield Historical Society Web Site
+# Winfield Historical Society [Test Web Site](./web)
 
 - [current host gate](https://sitecontrol-sp.gate.com)
 - has ssh 
