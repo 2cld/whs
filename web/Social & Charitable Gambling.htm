@@ -1,0 +1,598 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+    <head>
+     	<base href="https://dia.iowa.gov/scg/index.php" />
+     	<title>
+       		Social &amp; Charitable Gambling     	</title>
+     	<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+     <meta http-equiv="content-language" content="en-us" />        <link rel="stylesheet" type="text/css" href="https://dia.iowa.gov/scg/assets/javascript/yui/calendar/assets/skins/sam/calendar.css?random=116"/>
+     <link rel="stylesheet" type="text/css" href="https://dia.iowa.gov/scg/assets/javascript/yui/container/assets/skins/sam/container.css?random=116"/>
+     <link rel="stylesheet" type="text/css" href="https://dia.iowa.gov/scg/assets/javascript/yui/menu/assets/skins/sam/menu.css?random=116"/>
+     <link rel="stylesheet" href="https://dia.iowa.gov/scg/assets/css/html.css?random=116" type="text/css" />
+     <link rel="stylesheet" href="https://dia.iowa.gov/scg/assets/css/layout.css?random=116" type="text/css" />
+     <link rel="stylesheet" href="https://dia.iowa.gov/scg/assets/css/content.css?random=116" type="text/css" />
+     <link rel="stylesheet" href="https://dia.iowa.gov/scg/assets/css/wizard.css?random=116" type="text/css" />
+     <!-- style for non-Explorer browsers -->
+     <comment>
+       <link rel="stylesheet" type="text/css" href="https://dia.iowa.gov/scg/assets/css/mozilla-html.css?random=116" />
+     </comment>
+     <link rel="stylesheet" type="text/css" media="print" href="https://dia.iowa.gov/scg/assets/css/print.css?random=116" />        <script type="text/javascript" src="https://dia.iowa.gov/scg/assets/javascript/yui/yahoo-dom-event/yahoo-dom-event.js?random=116"></script>
+     <script type="text/javascript" src="https://dia.iowa.gov/scg/assets/javascript/yui/utilities/utilities.js?random=116"></script>
+     <script type="text/javascript" src="https://dia.iowa.gov/scg/assets/javascript/yui/yahoo/yahoo-min.js?random=116"></script>
+     <script type="text/javascript" src="https://dia.iowa.gov/scg/assets/javascript/yui/animation/animation-min.js?random=116"></script>
+     <script type="text/javascript" src="https://dia.iowa.gov/scg/assets/javascript/yui/container/container-min.js?random=116"></script>
+     <script type="text/javascript" src="https://dia.iowa.gov/scg/assets/javascript/yui/menu/menu-min.js?random=116"></script>
+     <script type="text/javascript" src="https://dia.iowa.gov/scg/assets/javascript/yui/dom/dom-min.js?random=116"></script>
+     <script type="text/javascript" src="https://dia.iowa.gov/scg/assets/javascript/yui/event/event-min.js?random=116"></script>
+     <script type="text/javascript" src="https://dia.iowa.gov/scg/assets/javascript/yui/calendar/calendar-min.js?random=116"></script>
+     <script src="https://dia.iowa.gov/scg/assets/javascript/calendar.js?random=116"></script>
+     <script src="https://dia.iowa.gov/scg/assets/javascript/helppopup.js?random=116"></script>        <script>
+		            
+		var calendars;
+		var calendarsMapping;
+		var numCalendars;
+		
+		function handleSelect(type,args,obj) {
+		    var dates = args[0]; 
+		    var date = dates[0];
+		    var year = date[0], month = date[1], day = date[2];
+		    var txtDate = document.getElementById(this.txtFld);
+		    txtDate.value = month + "/" + day + "/" + year;
+		    this.cal.hide();
+		}
+		
+		function calendarInit() {
+			calendars = [];
+			calendarsMapping = [];
+			numCalendars = 0;
+			var numForms = document.forms.length;
+			for (var f = 0; f < numForms; f++) {
+			  var formElements = document.forms[f].elements
+			  var numElements = formElements.length
+			  for (var e = 0; e < numElements; e++) {
+			    var el = formElements[e];
+				if (el.name != null &&
+						el.name.indexOf('->') > 0) {
+					m = el.name.substring(el.name.indexOf('->') + 2);
+					n = '';
+					if  (el.name.indexOf('_') > 0 &&
+							el.name.indexOf('_') < 
+							el.name.indexOf('->')) {
+						n = '_' + el.name.substring(el.name.indexOf('_') + 1,el.name.indexOf('->'));
+					}
+					elementId = "cal_" + m + n;
+					if (document.getElementById(elementId) != null) {
+						calendar = new YAHOO.widget.Calendar(elementId + "_cal",elementId, { close:true } );
+						cd = { cal:calendar, txtFld:el.name};
+						calendar.selectEvent.subscribe(handleSelect, cd, true);
+						calendar.render();
+					    calendarsMapping[numCalendars] = elementId;
+						calendars[numCalendars] = calendar;
+						numCalendars++;
+					}
+				}
+			  }
+			}
+		}
+		
+		function openCalendar(field, containerId) {
+		    closeAllCalendars();
+		    for (var e = 0; e < numCalendars; e++) {
+		    	if (calendarsMapping[e] == containerId) {
+				    calendar = calendars[e];
+				    calendar.show();
+		    		return;
+		    	}
+		    }
+			calendar = new YAHOO.widget.Calendar(containerId + "_cal",containerId, { close:true } );
+			cd = { cal:calendar, txtFld:field.name};
+			calendar.selectEvent.subscribe(handleSelect, cd, true);
+			calendar.render();
+		    calendarsMapping[numCalendars] = containerId;
+			calendars[numCalendars] = calendar;
+			numCalendars++;
+			calendar.show();
+		}   
+		
+		function closeAllCalendars() {
+			if (calendars != null) {
+				var numCalendars = calendars.length
+		    	for(i=0; i<numCalendars; i++) {
+		    		calendars[i].hide();
+		    	}
+			}
+		}          
+		
+		YAHOO.util.Event.addListener(window, "load", calendarInit);
+</script>
+    </head>
+    <body class="yui-skin-sam">
+    <a name="top"> </a>
+
+    <!-- #header: holds the logo and top links -->
+    <div class="alignCenter">
+    <div id="header">
+        <div class="subContainer">
+            <div id="logo">
+            	<img src="https://dia.iowa.gov/scg/assets/images/logo.gif" alt="Iowa Department of Inspections & Appeals" />
+            </div>
+	        <div id="loginBar">
+		        <div class="content">Lucas State Office Building<br />
+					321 East 12th Street<br />
+					Des Moines, Iowa 50319-0083<br />
+					Phone: (515) 281-6848<br />
+					Fax: (515) 281-3291
+		        </div>
+	        </div>
+        </div>
+    </div>
+    </div>
+        <script type="text/javascript">
+        <!--
+            YAHOO.util.Event.onContentReady("siteoptions", function () {
+                var Dom = YAHOO.util.Dom,
+                oAnim;  // Animation instance
+                
+                 /*
+                     "beforeshow" event handler for each submenu of the MenuBar
+                     instance, used to setup certain style properties before
+                     the menu is animated.
+                  */
+                function onSubmenuBeforeShow(p_sType, p_sArgs) {
+                    var oBody,
+                        oShadow,
+                        oUL;
+                    if (this.parent) {
+                        /*
+                             Get a reference to the Menu's shadow element and 
+                             set its "height" property to "0px" to syncronize 
+                             it with the height of the Menu instance.
+                        */
+                        oShadow = this.element.lastChild;
+                        oShadow.style.height = "0px";
+                        /*
+                            Stop the Animation instance if it is currently 
+                            animating a Menu.
+                        */ 
+                        if (oAnim && oAnim.isAnimated()) {
+                        
+                            oAnim.stop();
+                            oAnim = null;
+                        
+                        }
+                        /*
+                            Set the body element's "overflow" property to 
+                            "hidden" to clip the display of its negatively 
+                            positioned <ul> element.
+                        */ 
+                        oBody = this.body;
+                        /*
+                            There is a bug in gecko-based browsers where 
+                            an element whose "position" property is set to 
+                            "absolute" and "overflow" property is set to 
+                            "hidden" will not render at the correct width when
+                            its offsetParent's "position" property is also 
+                            set to "absolute."  It is possible to work around 
+                            this bug by specifying a value for the width 
+                            property in addition to overflow.
+                        */
+                        if (this.parent && 
+                            !(this.parent instanceof YAHOO.widget.MenuBarItem) && 
+                            YAHOO.env.ua.gecko) {
+                            Dom.setStyle(oBody, "width", (oBody.clientWidth + "px"));
+                        }
+                        Dom.setStyle(oBody, "overflow", "hidden");
+                        /*
+                            Set the <ul> element's "marginTop" property 
+                            to a negative value so that the Menu's height
+                            collapses.
+                        */ 
+                        oUL = oBody.getElementsByTagName("ul")[0];
+                        Dom.setStyle(oUL, "marginTop", ("-" + oUL.offsetHeight + "px"));
+                    }
+                }
+
+                /*
+                    "tween" event handler for the Anim instance, used to 
+                    syncronize the size and position of the Menu instance's 
+                    shadow and iframe shim (if it exists) with its 
+                    changing height.
+                */
+                function onTween(p_sType, p_aArgs, p_oShadow) {
+                    if (this.cfg.getProperty("iframe")) {
+                        this.syncIframe();
+                    }
+                    if (p_oShadow) {
+                        p_oShadow.style.height = this.element.offsetHeight + "px";
+                    }
+                }
+
+                /*
+                    "complete" event handler for the Anim instance, used to 
+                    remove style properties that were animated so that the 
+                    Menu instance can be displayed at its final height.
+                */
+                function onAnimationComplete(p_sType, p_aArgs, p_oShadow) {
+                    var oBody = this.body,
+                        oUL = oBody.getElementsByTagName("ul")[0];
+                    if (p_oShadow) {
+                        p_oShadow.style.height = this.element.offsetHeight + "px";
+                    }
+                    Dom.setStyle(oUL, "marginTop", "");
+                    Dom.setStyle(oBody, "overflow", "");
+                    if (this.parent && 
+                        !(this.parent instanceof YAHOO.widget.MenuBarItem) && 
+                        YAHOO.env.ua.gecko) {
+                        Dom.setStyle(oBody, "width", "");
+                    }
+                }
+
+                /*
+                     "show" event handler for each submenu of the MenuBar 
+                     instance - used to kick off the animation of the 
+                     <ul> element.
+                */
+                function onSubmenuShow(p_sType, p_sArgs) {
+                    var oElement,
+                        oShadow,
+                        oUL;
+                    if (this.parent) {
+                        oElement = this.element;
+                        oShadow = oElement.lastChild;
+                        oUL = this.body.getElementsByTagName("ul")[0];
+                        /*
+                             Animate the <ul> element's "marginTop" style 
+                             property to a value of 0.
+                        */
+                        oAnim = new YAHOO.util.Anim(oUL, 
+                            { marginTop: { to: 0 } },
+                            .5, YAHOO.util.Easing.easeOut);
+                        oAnim.onStart.subscribe(function () {
+                            oShadow.style.height = "100%";
+                        });
+                        oAnim.animate();
+                        /*
+                            Subscribe to the Anim instance's "tween" event for 
+                            IE to syncronize the size and position of a 
+                            submenu's shadow and iframe shim (if it exists)  
+                            with its changing height.
+                        */
+                        if (YAHOO.env.ua.ie) {
+                            oShadow.style.height = oElement.offsetHeight + "px";
+                            /*
+                                Subscribe to the Anim instance's "tween"
+                                event, passing a reference Menu's shadow 
+                                element and making the scope of the event 
+                                listener the Menu instance.
+                            */
+                            oAnim.onTween.subscribe(onTween, oShadow, this);
+                        }
+                        /*
+                            Subscribe to the Anim instance's "complete" event,
+                            passing a reference Menu's shadow element and making 
+                            the scope of the event listener the Menu instance.
+                        */
+                        oAnim.onComplete.subscribe(onAnimationComplete, oShadow, this);
+                    }
+                }
+
+                /*
+                     Instantiate a MenuBar:  The first argument passed to the 
+                     constructor is the id of the element in the page 
+                     representing the MenuBar; the second is an object literal 
+                     of configuration properties.
+                */
+                var oMenuBar = new YAHOO.widget.MenuBar("siteoptions", { 
+                                                            autosubmenudisplay: true, 
+                                                            hidedelay: 750, 
+                                                            lazyload: true });
+                /*
+                     Subscribe to the "beforeShow" and "show" events for 
+                     each submenu of the MenuBar instance.
+                */
+                oMenuBar.subscribe("beforeShow", onSubmenuBeforeShow);
+                oMenuBar.subscribe("show", onSubmenuShow);
+                /*
+                     Call the "render" method with no arguments since the 
+                     markup for this MenuBar already exists in the page.
+                */
+                oMenuBar.render();  
+            });
+			
+			function enterDomesticAddress() {
+		   		domesticAddressDiv = new YAHOO.widget.Module('domesticaddress');
+		   		internationalAddressDiv = new YAHOO.widget.Module('internationaladdress');
+		   		domesticAddressDiv.show();
+		   		internationalAddressDiv.hide();
+			}
+			
+			function enterInternationalAddress() {
+		   		domesticAddressDiv = new YAHOO.widget.Module('domesticaddress');
+		   		internationalAddressDiv = new YAHOO.widget.Module('internationaladdress');
+		   		domesticAddressDiv.hide();
+		   		internationalAddressDiv.show();
+			}
+		
+			function addressInit() {
+				var numForms = document.forms.length
+				for (var f = 0; f < numForms; f++) {
+				  var formElements = document.forms[f].elements
+				  var numElements = formElements.length
+				  for (var e = 0; e < numElements; e++) {
+				    var el = formElements[e]
+		    		if (el.name != null &&
+		    				(el.name.indexOf('->addressTypeId') > 0 ||
+		    				el.name.indexOf('AddressTypeId') > 0)) {
+		    			fieldName = el.name;
+		    			addressType = document.forms[f][fieldName];
+		    			for (var b=0; b<addressType.length; b++) {
+					         if (addressType[b].checked) {
+								if (addressType[b].value == 0) {
+									enterDomesticAddress();
+								} else {
+									enterInternationalAddress();
+								}
+								return;
+					         }
+					    }
+						return;
+		    		}
+				  }
+				}
+			}
+			
+			/*
+			Author: Russell Calaby
+			Change: forceNumericInput function added 6/19/08
+			Reason: See bug#14475
+			Form Controls: Location->ein; Organization->salesTaxNumber
+			Files Altered: LicenseeInformation.thtml; Header.thtml
+			*/
+			
+			function forceNumericInput(obj){
+				this.obj = obj;
+				this.obj.value=this.obj.value.replace(/[^\d]*/gi,"");
+				var str=this.obj.value;
+				if(str.length > 9) {
+					this.obj.value = this.obj.value.substr(0,9);
+				}
+				return this.obj.value;
+			}
+			function forceNumInput(obj){
+				this.obj = obj;
+				this.obj.value=this.obj.value.replace(/[^\d\.]*/gi,"");
+				var str=this.obj.value;
+				if(str.length > 100) {
+					this.obj.value = this.obj.value.substr(0,100);
+				}
+				return this.obj.value;
+			}
+			function forceTaxInput(obj){
+				this.obj = obj;
+				this.obj.value=this.obj.value.replace(/[^\d]*/gi,"");
+				var str=this.obj.value;
+				if(str.length > 2) {
+					this.obj.value = this.obj.value.substr(0,2);
+				}
+				return this.obj.value;
+			}
+		//-->
+        </script>
+	<div id="menubar">
+		<div class="content">
+		   <div id="siteoptions" class="yuimenubar yuimenubarnav">
+		        <div class="bd">
+		            <ul class="first-of-type">
+		                <li class="yuimenubaritem first-of-type"><a class="yuimenubaritemlabel" href="https://dia.iowa.gov/scg/index.php/applynow">APPLY NOW</a>		                
+		                </li>
+		                <li class="yuimenubaritem"><a class="yuimenubaritemlabel" href="https://dia.iowa.gov/scg/index.php/search">SEARCH</a>
+		                </li>
+		                <li class="yuimenubaritem"><a class="yuimenubaritemlabel" href="https://dia.iowa.gov/scg/index.php/complaint">COMPLAINT</a>
+		                </li>
+		                <li class="yuimenubaritem"><a class="yuimenubaritemlabel" href="https://dia.iowa.gov/scg/index.php/contact">CONTACT US</a>
+		                </li>
+		                		                <li class="yuimenubaritem"><a class="yuimenubaritemlabel active" href="https://dia.iowa.gov/scg/index.php/myaccount">MY ACCOUNT</a>
+		                    <div id="myaccount" class="yuimenu">
+		                        <div class="bd">                                        
+		                            <ul>
+		                                <li class="yuimenuitem"><a class="yuimenuitemlabel" href="https://dia.iowa.gov/scg/index.php/myaccount">Welcome</a>					                                
+		                                </li>
+		                                <li class="yuimenuitem"><a class="yuimenuitemlabel" href="https://dia.iowa.gov/scg/index.php/mylicensees">My Licensees</a>					                                
+		                                </li>
+		                                <li class="yuimenuitem"><a class="yuimenuitemlabel" href="https://dia.iowa.gov/scg/index.php/myapplications">My Applications</a>					                                
+		                                </li>
+		                                <li class="yuimenuitem"><a class="yuimenuitemlabel" href="https://dia.iowa.gov/scg/index.php/myprofile">My Profile</a>					                                
+		                                </li>
+		                            </ul>
+		                        </div>
+		                    </div>      
+		                </li>
+		                                        		                <li class="yuimenubaritem"><a class="yuimenubaritemlabel" href="https://dia.iowa.gov/scg/index.php/accountprofile/13648">WINFIELD HISTORICAL SOCIETY</a>
+		                    <div id="organizationaccount" class="yuimenu">
+		                        <div class="bd">                                       
+		                            <ul>
+		                                <li class="yuimenuitem"><a class="yuimenuitemlabel" href="https://dia.iowa.gov/scg/index.php/accountprofile/13648">Account Profile</a>					                                
+		                                </li>
+		                                <li class="yuimenuitem"><a class="yuimenuitemlabel" href="https://dia.iowa.gov/scg/index.php/useraccounts/13648">User Acounts</a>					                                
+		                                </li>
+		                                <li class="yuimenuitem"><a class="yuimenuitemlabel" href="https://dia.iowa.gov/scg/index.php/licenses/13648">Licenses</a>					                                
+		                                </li>
+		                                <li class="yuimenuitem"><a class="yuimenuitemlabel" href="https://dia.iowa.gov/scg/index.php/gamblingreports/13648">Gambling Reports</a>					                                
+		                                </li>
+		                            </ul>
+		                        </div>
+		                    </div>      
+		                </li>
+		                		            </ul>            
+		        </div>
+		    </div>
+	    </div>
+    </div>
+                   
+    <!-- #container: holds the page content -->
+    <div id="container">
+
+        <div id="singleContent">
+
+	<div class="loggedinuser">
+        	<div class="floatRight"><a href="https://dia.iowa.gov/scg/index.php/responsiblegaming">About Responsible Gaming</a></div>	
+		Signed in as <b><i>JUDITH.ROBINETTE@IOWAID</i></b>  &nbsp;&nbsp;<a href="https://dia.iowa.gov/scg/index.php/signout"><b>Sign Out</b></a>
+			</div>
+	<br class="clear" />
+	<br class="clear" />
+		
+	        <br class="clear" />
+			<div class="breadcrumb">
+				        <a href="https://dia.iowa.gov/scg/index.php/myaccount">My Account</a>
+		    <img src="https://dia.iowa.gov/scg/assets/images/indentarrow.gif" alt="" border=0 align="bottom"><a href="https://dia.iowa.gov/scg/index.php/mylicensees">My Licensees</a>
+		    <img src="https://dia.iowa.gov/scg/assets/images/indentarrow.gif" alt="" border=0 align="bottom"><a href="https://dia.iowa.gov/scg/index.php/accountprofile/13648">WINFIELD HISTORICAL SOCIETY</a>
+		    <img src="https://dia.iowa.gov/scg/assets/images/indentarrow.gif" alt="" border=0 align="bottom"><a href="https://dia.iowa.gov/scg/index.php/gamblingreports/13648">Gambling Reports</a>
+		    		    
+      		<img src="https://dia.iowa.gov/scg/assets/images/indentarrow.gif" alt="" border=0 align="bottom">Annual Report - State Fiscal Year 2010      		</div>
+      		<br class="clear" />
+      		
+            <form action="submit_quarterlyreport_thanks.php" method="get">
+
+     	    			
+     	    			
+     	    <h2>Thank You for Your Report Submission!</h2>
+			
+						
+			   
+		    <h3 style="padding-top:0"><img src="https://dia.iowa.gov/scg/assets/images/important.gif" alt="Important" class="floatLeft" style="margin:-2px 3px 0 0" />Submit Sales Tax Return<br />
+		    for Temporary Gambling Activities</h3>
+		    <p>Gambling receipts are generally subject to Iowa Sales Tax, even for non-profit organizations.  All taxes are payable to the Iowa Department of Revenue and should <b><u>not</u></b> be submitted to DIA with your annual gambling report.  <b>The Department of Inspections & Appeals is not able to assist with tax questions.</b>  For assistance with determining how to file and pay sales tax on gambling receipts, contact the Iowa Department of Revenue, Taxpayer Services Section, at 1-800-367-3388 or the address listed below.</p>
+            
+            <blockquote>
+            Iowa Department of Revenue<br />
+            ATTN: Gambling Report<br />
+            401 SW 7th Street, Suite C<br />
+		    Des Moines, IA 50309
+            </blockquote></li>
+            <li><b>Finished!</b><br /><br /></li>
+			</ol>
+			            
+                        
+			<fieldset>
+			<br class="clear" />
+		    <div class="area100">
+		          <div class="label"><label for="name">For Ending:</label></div>
+		          <div class="field">06/30/2010</div></div>
+		    <div class="area100">
+		          <div class="label"><label for="name">Due Date:</label></div>
+		          <div class="field">12/30/2010</div></div>
+		    <!--div class="area100">
+		          <div class="label"><label for="name">Sales Tax Permit #:</label></div>
+		          <div class="field">{Organization.getSalesTaxNumber(#1#)}</div></div-->
+		    			<br class="clear" />
+		    <div class="area100">
+		          <div class="label"><label for="dateSubmitted">Submitted Date:</label></div>
+		          <div class="field">03/09/2011 08:32AM</div></div>
+		    <div class="area100">
+		          <div class="label"><label for="submitter">Submitted By:</label></div>
+		          <div class="field">Judith Robinette<br />
+		          <i>JUDITH.ROBINETTE@IOWAID</i></div></div>
+		    			<br class="clear" />
+		    <br class="clear" />
+		    <p>The following licenses are covered under this report:</p>
+		    <div class="archive">
+            <table>
+			  <thead>
+			    <tr>
+				  <th width="40%" class="nowrap">License Number</th>
+				  <th width="30%" class="nowrap options">Issued</th>
+				  <th width="30%" class="nowrap options">Expires</th>
+				</tr>
+			  </thead>
+			  <tbody>
+								<tr>
+				    <td class="nowrap">500000021438<br></td>
+    				  <td class="nowrap options">05/29/2010<br></td>
+    				  <td class="nowrap options">08/26/2010<br></td>
+				</tr>
+
+			  </tbody>
+			</table>
+			</div>
+		    </fieldset>
+		    
+		    		    			<br class="clear" />
+			<br class="clear" />
+		    <div class="archive">
+            <table>
+			  <thead>
+			    <tr>
+				  <th width="77%" class="nowrap">GAMBLING ACTIVITY</th>
+				  <th width="23%" class="options nowrap">TOTALS</th>
+				</tr>
+			  </thead>
+			  <tbody>
+				<tr>
+				  <td><img src="https://dia.iowa.gov/scg/assets/images/01.jpg" alt="Step One" class="floatleft" /><b>Total gambling
+				  money collected</b></div>
+				  </td>
+				  <td class="currency fieldtext"><div class="dollarsign">$</div></td>
+				</tr>
+				<tr>
+				  <td><img src="https://dia.iowa.gov/scg/assets/images/02.jpg" alt="Step Two" class="floatleft" /><b>Gross
+				        receipts </b></td>
+				  <td class="currency fieldtext"><div class="dollarsign">$</div>0.00</td>
+				</tr>
+				<tr>
+				  <td><img src="https://dia.iowa.gov/scg/assets/images/03.jpg" alt="Step Three" class="floatleft" /><b>Cost
+				  of prizes (exclude donated prizes)</b></td>
+				  <td class="currency fieldtext"><div class="dollarsign">$</div>0.00</td>
+				</tr>
+				<tr>
+				  <td><img src="https://dia.iowa.gov/scg/assets/images/04.jpg" alt="Step Four" class="floatleft" /><b>Net
+				  receipts</b></div></td>
+				  <td class="currency fieldtext"><div class="dollarsign">$</div>0.00</td>
+				</tr>
+				<tr>
+				  <td><img src="https://dia.iowa.gov/scg/assets/images/05.jpg" alt="Step Five" class="floatleft" /><b>Allowable
+				  expenses</b>
+				  <br class="clear" />
+				  <i>Incurred as a result of gambling activity
+				  (IAC 481-100.33).  This amount shall not exceed 25 percent of Line 4.</i></td>
+				  <td class="currency fieldtext"><div class="dollarsign">$</div>0.00</td>
+				</tr>
+				<tr>
+				  <td><img src="https://dia.iowa.gov/scg/assets/images/06.jpg" alt="Step Six" class="floatleft" /><b>Dedicated
+				  funds</b>
+				  <br class="clear" />
+				  <i>This amount must be used for charitable, religious, educational,<br />
+				   public, civic or patriotic purposes.</i></td>
+				  <td class="currency fieldtext"><div class="dollarsign">$</div>0.00</td>
+				</tr>
+				<tr>
+				  <td><b>TOTAL income from all sources:</b></td>
+				  <td class="currency fieldtext"><div class="dollarsign">$</div>0.00</td>
+				</tr>
+			  </tbody>
+			</table>
+			</div>
+									
+    	</div><!-- /singleContent -->
+
+    <!-- #footer: holds the site footer (logo and links) -->
+    <div id="footer">
+        <ul>
+            <li id="copyright">
+            	&copy; 2008 <a href="http://dia.iowa.gov">Iowa
+          		Department of Inspections &amp; Appeals</a>&nbsp;&nbsp;<a href="http://www.iowa.gov/pages/disclaimer" target="_blank" title="Terms, Privacy & Warranty Information">Terms, Privacy & Warranty Information</a></li>
+            <li id="links">
+                Version 1.1.6                	            
+            </li>
+            </ul>
+    </div>
+    <!-- #footer end -->
+
+    </div>
+  <!-- #container end -->
+    
+    	  
+    
+    </body>
+
+</html>
