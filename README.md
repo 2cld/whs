@@ -17,7 +17,12 @@
 - [Facebook developer tools](https://developers.facebook.com/tools/)
 - [Facebook Backup your ENTIRE Facebook photos and videos- youtube](https://www.youtube.com/watch?v=Dbj0IMLpZ80)
 - [Opensource Accounting https://www.odoo.com](https://www.odoo.com)
-- 
+- tbd
+
+```
+(base) cat@cats-Mac-mini Downloads % scp WHS-NorthRenovation.jpg xxxxx@winfieldhistoricalsociety.com:
+```
+
 ```
 ghadmin@Cybertruck:~$ git push -u origin master
 ghadmin@Cybertruck:~$ git remote -v
