@@ -7,10 +7,17 @@
 - See notes from Carol
 - Talked to Carol on 2024.01.31 Wed and got hosting info
 - [http://www.winfieldhistoricalsociety.com/](http://www.winfieldhistoricalsociety.com/)
+- [https://www.facebook.com/WinfieldIowaHistoricalSocietyandmuseum](https://www.facebook.com/WinfieldIowaHistoricalSocietyandmuseum)
+- [https://www.google.com/maps/@41.1282912,-91.4379011,3a,75y,221.67h,90t](https://www.google.com/maps/@41.1282912,-91.4379011,3a,75y,221.67h,90t/data=!3m7!1e1!3m5!1sHrGJW5HzzsTWDuFin8H1Sg!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fpanoid%3DHrGJW5HzzsTWDuFin8H1Sg%26cb_client%3Dsearch.gws-prod.gps%26w%3D86%26h%3D86%26yaw%3D221.67038%26pitch%3D0%26thumbfov%3D100!7i16384!8i8192?entry=ttu)
 - [https://www.henrycountyheritagetrust.org/](https://www.henrycountyheritagetrust.org/) - example of format
 - added winfieldhistoricalsociety@gmail.com email address - whs-chris winfield-historical-society What#Time#
 - Updated Domain Name Contacts
 
+- [Facebook iframe plugin generator](https://developers.facebook.com/docs/plugins/page-plugin/)
+- [Facebook developer tools](https://developers.facebook.com/tools/)
+- [Facebook Backup your ENTIRE Facebook photos and videos- youtube](https://www.youtube.com/watch?v=Dbj0IMLpZ80)
+- [Opensource Accounting https://www.odoo.com](https://www.odoo.com)
+- 
 ```
 ghadmin@Cybertruck:~$ git push -u origin master
 ghadmin@Cybertruck:~$ git remote -v
