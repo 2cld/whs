@@ -8,6 +8,8 @@
 - Talked to Carol on 2024.01.31 Wed and got hosting info
 - [http://www.winfieldhistoricalsociety.com/](http://www.winfieldhistoricalsociety.com/)
 - [https://www.henrycountyheritagetrust.org/](https://www.henrycountyheritagetrust.org/) - example of format
+- added winfieldhistoricalsociety@gmail.com email address - whs-chris winfield-historical-society What#Time#
+- Updated Domain Name Contacts
 
 ```
 ghadmin@Cybertruck:~$ git push -u origin master
