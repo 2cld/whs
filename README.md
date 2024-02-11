@@ -168,4 +168,18 @@ ghadmin@Cybertruck:~$ cat whs-web/.git/config
 ghadmin@Cybertruck:~$
 ```
 
+```
+      In 2021 the Winfield Historical Society was gifted a building at 108 North Locust, Winfield By Dave & Tina Becker. This building was built in 1907 by Morris Pusey. The old building on this site was torn down & included an old livery barn on the east end. 
+      Some of the businesses in this building included: 
+1909 Larson & Peterson Co. 
+           L. L. Elliott- owned more then 30 years
+            P&G Stores leased from him 
+1951 Earl Kellogg
+1962 Ivan Lee – Lee Coin Operated Laundry 
+1963 Lee’s Garage in the back of building with Roland Miller as Mechanic. 
+
+      Since 2021 the Historical Society has been raising funds to renovate the building. It was in poor condition, basically a shell but worth preserving according to experts. This location will give the museum much needed additional space. 
+We uncovered a mural on the north exterior wall when tuck pointing was done. New gutters we’re added on the north wall. Basement windows we’re enclosed to keep weather & critters out. Electricity has been installed with more outlets to come. Extensive work has been done in the basement shoring up pillars and beams. The old oil furnace was removed to make room for a future display “Grandma’s Root Cellar”. 2023 saw new sidewalks in front of the building & in front of the empty lot to the north we own too. 2024 will include new windows, more energy efficient on the front of the building. As funds allow, we will then move inside to begin the interior renovations. Grants & donations fund the badly needed renovations.
+```
+
 [school of trade to move](https://www.youtube.com/@SchoolOfTrade)
